@@ -1,0 +1,17 @@
+name: Slinky
+description: A bot that will keep track of your shared links in a Google Spreadsheet
+avatar: resources/avatar.png
+#background: resources/background.png
+config:
+  - name: GOOGLE_CREDS
+    friendly_name: Google API Service Account Credentials
+    info: Create a project in Google Developers Console.  Enable Google Drive.  Create a "service account" for the project and then download the JSON key and paste the contents.
+    global: true
+    type: text
+  - name: SPREADSHEET_ID
+    friendly_name: Google Spreadsheet ID
+    info: Copy this from the URL of the spreadsheet
+    type: text
+#screenshots:
+#  - screenshot: resources/screenshot1.png
+#  - screenshot: resources/screenshot2.jpg

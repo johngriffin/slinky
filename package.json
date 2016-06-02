@@ -1,0 +1,30 @@
+{
+  "name": "slinky",
+  "version": "1.0.0",
+  "description": "A Slack bot that keeps track of shared links in a Google Spreadsheet",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/johngriffin/slinky.git"
+  },
+  "keywords": [
+    "slackbot",
+    "bot",
+    "slack"
+  ],
+  "author": "John Griffin",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/johngriffin/slinky/issues"
+  },
+  "homepage": "https://github.com/johngriffin/slinky#readme",
+  "dependencies": {
+    "beepboop-botkit": "^1.4.0",
+    "botkit": "~0.1.1",
+    "google-spreadsheet": "~2.0.3",
+    "async": "~2.0.0-rc.5"
+  }
+}
