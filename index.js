@@ -47,10 +47,7 @@ controller.hears('\<(.*?)\>', ['ambient', 'direct_message','direct_mention','men
         link: message.match[1],
         full_message: message.text
       }
-      doc.addRow(1, new_row, function(e) {
-        bot.reply(message, "Hmm, I'm having trouble accessing your spreadsheet - https://docs.google.com/spreadsheets/d/" + spreadsheet_id);
-        bot.reply(message, "Please make sure that you've shared it with this email address: slinky@slack-slinky.iam.gserviceaccount.com");
-      });
+      doc.addRow(1, new_row, function(e) { console.log(e) })
       step();
     }
   ]);
