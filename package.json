@@ -22,9 +22,9 @@
   },
   "homepage": "https://github.com/johngriffin/slinky#readme",
   "dependencies": {
+    "async": "~2.0.0-rc.5",
     "beepboop-botkit": "^1.4.0",
     "botkit": "~0.1.1",
-    "google-spreadsheet": "~2.0.3",
-    "async": "~2.0.0-rc.5"
+    "google-spreadsheet": "~2.0.3"
   }
 }

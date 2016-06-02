@@ -28,14 +28,14 @@ if (token) {
 }
 
 controller.on('bot_channel_join', function (bot, message) {
-  bot.reply(message, "I'm watching you.")
+  bot.reply(message, "Hi! Please make sure that your spreadsheet is shared with this email address: Please make sure that you've shared it with this email address: slinky@slack-slinky.iam.gserviceaccount.com")
 })
 
 controller.hears('\<(.*?)\>', ['ambient', 'direct_message','direct_mention','mention'], function (bot, message) {
   var GoogleSpreadsheet = require('google-spreadsheet');
   var async = require('async');
   // spreadsheet key is the long id in the sheets URL
-  var doc = new GoogleSpreadsheet('18CEHcDMYhdxvit2PQKuQjpCXWdXWaCbvXRman-sk_Zk');
+  var doc = new GoogleSpreadsheet(spreadsheet_id);
   
   async.series([
     function setAuth(step) {
@@ -47,11 +47,14 @@ controller.hears('\<(.*?)\>', ['ambient', 'direct_message','direct_mention','men
         link: message.match[1],
         full_message: message.text
       }
-      doc.addRow(1, new_row, function(e) {console.log(e)})
+      doc.addRow(1, new_row, function(e) {
+        bot.reply(message, "Hmm, I'm having trouble accessing your spreadsheet - https://docs.google.com/spreadsheets/d/" + spreadsheet_id);
+        bot.reply(message, "Please make sure that you've shared it with this email address: slinky@slack-slinky.iam.gserviceaccount.com");
+      });
       step();
     }
   ]);
       
-  bot.reply(message, "I've added that link to the Google spreadsheet here: https://docs.google.com/spreadsheets/d/18CEHcDMYhdxvit2PQKuQjpCXWdXWaCbvXRman-sk_Zk/edit#gid=0");
+  bot.reply(message, "I've added that link to the Google spreadsheet here: https://docs.google.com/spreadsheets/d/" + spreadsheet_id);
 });
 
