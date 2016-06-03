@@ -34,8 +34,6 @@ controller.hears('\<(.*?)\>', ['ambient', 'direct_message','direct_mention','men
   
   var GoogleSpreadsheet = require('google-spreadsheet');
   var async = require('async');
-  
-  // spreadsheet key is the long id in the sheets URL
   var doc = new GoogleSpreadsheet(bot.config.SPREADSHEET_ID);
   
   async.series([
@@ -43,8 +41,9 @@ controller.hears('\<(.*?)\>', ['ambient', 'direct_message','direct_mention','men
       doc.useServiceAccountAuth(JSON.parse(google_creds), step);
     },
     function addRow(step) {
+      var date = new Date();
       var new_row = {
-        user: "john",
+        timestamp: date.toISOString(),
         link: message.match[1],
         full_message: message.text
       }
