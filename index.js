@@ -1,14 +1,12 @@
 var Botkit = require('botkit')
 var token = process.env.SLACK_TOKEN
 var google_creds = process.env.GOOGLE_CREDS
-var spreadsheet_id = process.env.SPREADSHEET_ID
 
 var controller = Botkit.slackbot({
   // reconnect to Slack RTM when connection goes bad
   retry: Infinity,
   debug: false
 })
-
 
 // Assume single team mode if we have a SLACK_TOKEN
 if (token) {
@@ -36,12 +34,13 @@ controller.hears('\<(.*?)\>', ['ambient', 'direct_message','direct_mention','men
   
   var GoogleSpreadsheet = require('google-spreadsheet');
   var async = require('async');
+  
   // spreadsheet key is the long id in the sheets URL
   var doc = new GoogleSpreadsheet(bot.config.SPREADSHEET_ID);
   
   async.series([
     function setAuth(step) {
-      doc.useServiceAccountAuth(google_creds, step);
+      doc.useServiceAccountAuth(JSON.parse(google_creds), step);
     },
     function addRow(step) {
       var new_row = {
@@ -51,9 +50,16 @@ controller.hears('\<(.*?)\>', ['ambient', 'direct_message','direct_mention','men
       }
       doc.addRow(1, new_row, function(e) { console.log(e) })
       step();
+    },
+    function sendResponse(step){
+      bot.reply(message, "I've added that link to the Google spreadsheet here: https://docs.google.com/spreadsheets/d/" + bot.config.SPREADSHEET_ID);
+      step();
+    }],
+    function(err){
+      if( err ) {
+        console.log('Error: '+err);
+      }
     }
-  ]);
-      
-  bot.reply(message, "I've added that link to the Google spreadsheet here: https://docs.google.com/spreadsheets/d/" + bot.config.SPREADSHEET_ID);
+  );
 });
 
