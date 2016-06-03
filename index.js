@@ -9,6 +9,7 @@ var controller = Botkit.slackbot({
   debug: false
 })
 
+
 // Assume single team mode if we have a SLACK_TOKEN
 if (token) {
   console.log('Starting in single-team mode')
@@ -32,10 +33,11 @@ controller.on('bot_channel_join', function (bot, message) {
 })
 
 controller.hears('\<(.*?)\>', ['ambient', 'direct_message','direct_mention','mention'], function (bot, message) {
+  
   var GoogleSpreadsheet = require('google-spreadsheet');
   var async = require('async');
   // spreadsheet key is the long id in the sheets URL
-  var doc = new GoogleSpreadsheet(spreadsheet_id);
+  var doc = new GoogleSpreadsheet(bot.config.SPREADSHEET_ID);
   
   async.series([
     function setAuth(step) {
@@ -52,6 +54,6 @@ controller.hears('\<(.*?)\>', ['ambient', 'direct_message','direct_mention','men
     }
   ]);
       
-  bot.reply(message, "I've added that link to the Google spreadsheet here: https://docs.google.com/spreadsheets/d/" + spreadsheet_id);
+  bot.reply(message, "I've added that link to the Google spreadsheet here: https://docs.google.com/spreadsheets/d/" + bot.config.SPREADSHEET_ID);
 });
 
