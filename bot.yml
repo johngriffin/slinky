@@ -1,4 +1,4 @@
-name: sUR.Ly
+name: sURLy
 description: A bot that will keep track of your shared links in a Google Spreadsheet.  When you add the bot to your team you will have to specify a Google Spreadsheet ID to record the links to - you can get this ID from the spreadsheet URL.  Share your spreadsheet with "slinky@slack-slinky.iam.gserviceaccount.com" and add the following column headings: timestamp | link | full_message
 avatar: resources/avatar.png
 background: resources/bg.png
