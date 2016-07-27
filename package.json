@@ -1,5 +1,5 @@
 {
-  "name": "slinky",
+  "name": "surly",
   "version": "1.0.0",
   "description": "A Slack bot that keeps track of shared links in a Google Spreadsheet",
   "main": "index.js",

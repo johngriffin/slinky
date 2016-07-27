@@ -1,7 +1,8 @@
-name: Slinky
-description: A bot that will keep track of your shared links in a Google Spreadsheet
+name: sUR.Ly
+description: A bot that will keep track of your shared links in a Google Spreadsheet.  When you add the bot to your team you will have to specify a Google Spreadsheet ID to record the links to - you can get this ID from the spreadsheet URL.  Share your spreadsheet with "slinky@slack-slinky.iam.gserviceaccount.com" and add the following column headings: timestamp | link | full_message
 avatar: resources/avatar.png
-#background: resources/background.png
+background: resources/bg.png
+author: Atchai
 config:
   - name: GOOGLE_CREDS
     friendly_name: Google API Service Account Credentials
